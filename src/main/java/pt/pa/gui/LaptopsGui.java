@@ -66,19 +66,7 @@ public class LaptopsGui extends BorderPane {
         mainContent = new VBox(5);
 
         mainContent.setStyle("-fx-background-color: white; -fx-padding: 10px");
-/*
-        // Create a placeholder label for the main content
-        Label placeholderLabel = new Label("Select an item from the menu");
-        mainContent.getChildren().add(placeholderLabel);
 
-        // Listen for item selection in the ListView
-        listViewLaptops.getSelectionModel().
-                selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                    //updateListViewLapstops(placeholderLabel, newValue);
-                });
-
-
- */
         // Set the header, menu, and main content in the BorderPane
         setTop(header);
 
@@ -114,5 +102,6 @@ public class LaptopsGui extends BorderPane {
         Image image = new Image(inputStream);
         return new ImageView(image);
     }
+
 
 }

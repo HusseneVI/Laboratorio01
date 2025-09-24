@@ -40,7 +40,7 @@ Integrated Development Environment (IDE)
 
 •	Opcional: Obter Licença Educacional dos produtos completos da JetBrains, incluindo o IntelliJ IDEA Ultimate: https://www.jetbrains.com/community/education/
 
-•	Recomendação: Ativar o Mave como Runner no IntelliJ IDEA no seguinte ecrã das Settings (File > Settings)
+•	Recomendação: Ativar o Maven como Runner no IntelliJ IDEA no seguinte ecrã das Settings (File > Settings)
 
 <img src="images/RunnerMaven.png" alt="RunnerMaven" width="600">
 
@@ -95,4 +95,5 @@ Integrated Development Environment (IDE)
         });
 
    ```
+
 

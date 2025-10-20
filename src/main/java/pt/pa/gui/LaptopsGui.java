@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import pt.pa.model.Laptop;
+import pt.pa.model.Review;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -44,7 +45,7 @@ public class LaptopsGui extends BorderPane {
     }
 
     public void initializeComponents() throws FileNotFoundException {
-     //TODO
+
         listViewLaptops = new ListView<>();
         listViewLaptops.setCellFactory(param -> new LaptopListCell());
 
@@ -67,14 +68,38 @@ public class LaptopsGui extends BorderPane {
 
         mainContent.setStyle("-fx-background-color: white; -fx-padding: 10px");
 
+        Label placeholderLabel = new Label("Select an item from the menu");
+        mainContent.getChildren().add(placeholderLabel);
+
+        // Listen for item selection in the ListView
+        listViewLaptops.getSelectionModel().
+                selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    mainContentUpdate(placeholderLabel, newValue);
+                });
+
+
+
         // Set the header, menu, and main content in the BorderPane
         setTop(header);
-
-
         setLeft(listViewLaptops);
-
-
         setCenter(mainContent);
+    }
+
+
+    private void mainContentUpdate(Label placeholderLabel, Laptop newValue) {
+        if (newValue != null) {
+            mainContent.getChildren().clear();
+
+            LaptopInfoPane infoPane = new LaptopInfoPane(newValue);
+            Label reviews = new Label("Reviews: ");
+            reviews.setFont(Font.font("Arial", FontWeight.BOLD, 16)); // Bold label
+            reviews.setAlignment(Pos.TOP_LEFT);
+            ReviewListBox box = new ReviewListBox(newValue.getReviews());
+            mainContent.getChildren().addAll(infoPane, new Separator(), reviews, box);
+        } else {
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(placeholderLabel);
+        }
     }
 
     /**
@@ -102,6 +127,8 @@ public class LaptopsGui extends BorderPane {
         Image image = new Image(inputStream);
         return new ImageView(image);
     }
+
+
 
 
 }
